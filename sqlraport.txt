@@ -1,0 +1,9 @@
+select (select plenarka_id from glosowania where glosy.glosowanie_id=glosowania.glosowanie_id) as plenarka_id,
+ (select glosowanie_id from glosowania where glosowania.glosowanie_id=glosy.glosowanie_id) as glos_id,
+ (select nazwa from glosowania where glosowania.glosowanie_id=glosy.glosowanie_id) as nazwa,
+( select typ from glosowania where glosowania.glosowanie_id=glosy.glosowanie_id) as typ, 
+( select data from glosowania where glosowania.glosowanie_id=glosy.glosowanie_id) as data, 
+( select count(*) from glosy where glosowanie_id=glos_id) as ilosc_glosow, 
+opcja, 
+glosow
+ from glosy where (select zakonczone from glosowania where glosy.glosowanie_id=glosowania.glosowanie_id)=1
